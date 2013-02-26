@@ -1,20 +1,9 @@
 # Forever Web UI beta
 
----------------------------------
----------------------------------
-### The project **is _not_ maintained anymore**, I'd strongly advise using **Supervisord/Monit** instead of Forever/Monit.
-### For more informations check out [NodeJS process management at Brin.gr](http://blog.fgribreau.com/2012/03/process-management-at-bringr.html)
----------------------------------
----------------------------------
-
-
-
-
-
 Simple web UI for efficient NodeJS administration.
 Just a little experimentation with Backbone.js
 
-![Screen shot v0.1.0](/fgribreau/forever-webui/raw/master/public/img/v0.1.0.png)
+![Screen shot v0.1.0](https://raw.github.com/rajivk085/forever-webui/master/public/img/v0.1.0.png)
 
 ## Installation
 
