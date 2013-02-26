@@ -30,10 +30,10 @@ and browse ```http://127.0.0.1:8085```
 
 Start NodeJS processes with forever cli and manage them via a web interface.
 
-### TODO
+## TODO
 
-* Starting process directly from the web interface
-* Save the last X processes stopped via the web for later restart.
+* Starting process directly from the web interface: In-Progress
+* Save the last X processes stopped via the web for later restart: In-Progress
 
 
 ### Licence
