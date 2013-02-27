@@ -3,7 +3,7 @@
 Simple web UI for efficient NodeJS administration.
 Just a little experimentation with Backbone.js
 
-![Screen shot v0.1.0](https://raw.github.com/rajivk085/forever-webui/master/public/img/v0.1.0.png)
+![Screen shot v0.1.0](https://raw.github.com/r8k/forever-webui/master/public/img/v0.1.0.png)
 
 ## Installation
 
@@ -18,7 +18,7 @@ and browse ```http://127.0.0.1:8085```
 #### Via Git + NPM
 
 ``` bash
-    git clone https://github.com/rajivk085/forever-webui.git
+    git clone https://github.com/r8k/forever-webui.git
     cd forever-webui/
     npm install
     sudo node app.js
