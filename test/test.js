@@ -1,30 +1,33 @@
-var app = require('../app').app,
-	request = require('supertest'),
-	should = require('should'),
+var should = require('should'),
 	spawn = require('child_process').spawn;
 
 describe('Forever Start', function(){
+	beforeEach(function (done) {
+		this.child = spawn("forever", ['./test/fixtures/testProcessRun.js']);
+		this.bail = true;
+		done()
+	});
+
+	afterEach(function (done) {
+		this.child = spawn("forever", ['stop 0']);
+		done();
+	})
+
 	describe('Starting a Process w/ Forever: ', function(){
-		this.timeout(5000);
-		var UID = null;
-		beforeEach(function () {
-			this.child = spawn("forever", ['./test/fixtures/testProcessRun.js']);
-			this.bail = true;
-			request = require('supertest')
-		});
-
-		afterEach(function () {
-			this.child = spawn("forever", ['stop 0']);
-		})
-
+		var app, processId, Request, appServer;
+		app 		= require('../app').app
+		Request 	= require('supertest');
+		appServer 	= 'http://localhost:8085';
+		
 		it('should display it in webUI', function(done){
+			this.timeout(5000);
 			setTimeout(function () {
-				request = request('http://localhost:8085');
+				var request = Request(appServer);
 				request
 					.get('/processes')
 					.expect(200)
 					.end(function (err, res) {
-						UID = JSON.parse(res.text)[0].uid;
+						processId = JSON.parse(res.text)[0].uid;
 				  		JSON.parse(res.text)[0].should.include({
 			  				file: 'test/fixtures/testProcessRun.js'
 			  			});
@@ -34,10 +37,11 @@ describe('Forever Start', function(){
 		});
 
 		it('should stop after stopped from webUI', function(done){
+			this.timeout(5000);
 			setTimeout(function () {
-				request = request('http://localhost:8085');
+				var request = Request(appServer);
 				request
-					.get('/stop/' + UID)
+					.get('/stop/' + processId)
 					.expect(200)
 					.end(function (err, res) {
 				  		JSON.parse(res.text).should.include({
