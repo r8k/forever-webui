@@ -1,19 +1,15 @@
 (function() {
-  var HEADER, UI, ansiparse, app, async, ejs, express, forever, foreverUI, fs, _;
-
+  var HEADER, UI, ansiparse, app, async, ejs,
+  express, forever, foreverUI, fs, _, pkg, spawn;
   express = require('express');
-
   async = require('async');
-
   fs = require('fs');
-
   forever = require('forever');
-
   _ = require('underscore');
-
   ansiparse = require('ansiparse');
-
   ejs = require('ejs');
+  pkg = require('./package.json');
+  spawn = require('child_process').spawn;
 
   process.on("uncaughtException", function(err) {
     return console.log("Caught exception: " + err);
@@ -88,12 +84,20 @@
       });
     };
 
+    foreverUI.prototype.start = function(options, cb) {
+      var startScriptParams = new Array();
+      startScriptParams = decodeURIComponent(options).split(" ");
+      Array.prototype.unshift.apply(startScriptParams, ["start"]);
+      child = spawn("forever", startScriptParams);
+      child.unref();
+      return cb(null, this.child);
+    };
+
     return foreverUI;
 
   })();
 
   UI = new foreverUI();
-
   app = express();
 
   HEADER = {
@@ -129,7 +133,8 @@
   app.get('/', function(req, res) {
     return forever.list("", function(err, results) {
       return res.render('index.ejs', {
-        process: results
+        process: results,
+        version: pkg.version
       });
     });
   });
@@ -180,6 +185,22 @@
 
   app.get('/info/:uid', function(req, res) {
     return UI.info(req.params.uid, function(err, results) {
+      if (err) {
+        return res.send(JSON.stringify({
+          status: 'error',
+          details: err
+        }), HEADER, 500);
+      } else {
+        return res.send(JSON.stringify({
+          status: 'success',
+          details: results
+        }), HEADER, 200);
+      }
+    });
+  });
+
+  app.post('/addProcess', function(req, res) {
+    return UI.start(req.body.args, function(err, results) {
       if (err) {
         return res.send(JSON.stringify({
           status: 'error',
