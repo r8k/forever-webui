@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Console by r8k</title>
+    <title>Forever Console by r8k</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -15,8 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Console</h1>
-        <p>A Simple Web UI for efficient Node.js Administration. Forked from FGRibreau, and bringing this back into action.</p>
+        <h1>Forever Console</h1>
+        <p>Console, for an efficient NodeJS administration.</p>
 
         <p class="view"><a href="https://github.com/r8k/forever-webui">View the Project on GitHub <small>r8k/forever-webui</small></a></p>
 
@@ -28,39 +28,33 @@
         </ul>
       </header>
       <section>
-        <h1>Forever Web UI beta</h1>
+        <h1>Forever Web UI <a href="http://travis-ci.org/FGRibreau/forever-webui"><img src="https://secure.travis-ci.org/FGRibreau/forever-webui.png" alt="Build Status"></a>
+</h1>
 
-<p>Simple web UI for efficient NodeJS administration.
-Just a little experimentation with Backbone.js</p>
+<p>Console, for an efficient NodeJS administration.</p>
 
-<p><img src="https://raw.github.com/r8k/forever-webui/master/public/img/v0.1.0.png" alt="Screen shot v0.1.0"></p>
+<p><img src="http://f.cl.ly/items/0g2f2u2C3M1W2Q1J2s2i/LoginScreen.png" alt="Login Page"></p>
+
+<p><img src="http://f.cl.ly/items/2d3F121B261d0H1z0t1N/ForeverConsole.png" alt="Forever Console"></p>
 
 <h2>Installation</h2>
 
 <h3>Via npm (node package manager)</h3>
 
-<div class="highlight"><pre>
-    npm install forever-webui <span class="o">&amp;&amp;</span>
-    sudo node node_modules/forever-webui/app.js
+<div class="highlight"><pre>    npm install forever-webui <span class="o">&amp;&amp;</span> sudo node node_modules/forever-webui/app.js
 </pre></div>
 
-<p>and browse</p>
-<div class="highlight"><pre>
-    http://127.0.0.1:8085
-</pre></div>
+<p>and browse <code>http://127.0.0.1:8085</code></p>
 
 <h4>Via Git + NPM</h4>
 
-<div class="highlight"><pre>    git clone https://github.com/r8k/forever-webui.git
+<div class="highlight"><pre>    git clone https://github.com/FGRibreau/forever-webui.git
     <span class="nb">cd </span>forever-webui/
     npm install
-    sudo node app.js
+    sudo npm start
 </pre></div>
 
-<p>and browse</p>
-<div class="highlight"><pre>
-    http://127.0.0.1:8085
-</pre></div>
+<p>and browse <code>http://127.0.0.1:8085</code></p>
 
 <h2>Usage</h2>
 
@@ -70,11 +64,21 @@ Just a little experimentation with Backbone.js</p>
 because if you are planning to run node processes thru sudo,
 they will be visible to forever, via sudo only. <a href="https://github.com/nodejitsu/forever/issues/88#issuecomment-1613309">[1]</a></p>
 
+<h2>Run Tests</h2>
+
+<div class="highlight"><pre>    npm install <span class="o">&amp;&amp;</span> npm <span class="nb">test</span>
+</pre></div>
+
+<h2>Clean</h2>
+
+<div class="highlight"><pre>    npm clean
+</pre></div>
+
 <h2>To Do</h2>
 
 <ul>
-<li>Starting process directly from the web interface</li>
-<li>Save the last X processes stopped via the web for later restart.</li>
+<li>Starting process directly from the web interface: In-Progress</li>
+<li>Save the last X processes stopped via the web for later restart: In-Progress</li>
 </ul><h3>Licence</h3>
 
 <p>Copyright (c) 2011, Francois-Guillaume Ribreau <a href="mailto:node@fgribreau.com">node@fgribreau.com</a>
